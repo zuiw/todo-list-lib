@@ -1,0 +1,26 @@
+{
+  "name": "todo-list-lib",
+  "version": "1.0.0",
+  "description": "A todo-list lib. It can help you to do something",
+  "main": "todo-list.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zuiw/todo-list-lib.git"
+  },
+  "keywords": [
+    "todo",
+    "list"
+  ],
+  "author": "wuyuchen",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/zuiw/todo-list-lib/issues"
+  },
+  "homepage": "https://github.com/zuiw/todo-list-lib#readme"
+}

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="../todo-list.js"></script>
+    <title>test todo-list.js</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        #todo-list {
+            width: 200px;
+            margin: 0 auto;
+        }
+
+        #todo-list-items {
+            height: 100%;
+            min-width: 120px;
+            width: 100%;
+        }
+
+        #todo-list-items .todo-item {
+            position: relative;
+            height: 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            background-color: #a0a0a0;
+            border-radius: 5px;
+        }
+
+        #todo-list-items .todo-item {
+            font-size: 22px;
+            color: #333;
+            width: 100%;
+            min-width: 120px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Test todo-list</h1>
+
+    <div id="todo-list">
+        <input type="text" id="new-todo" placeholder="Add a new todo">
+        <button class="add-todo">Add</button><br>
+
+        <input type="number" id="remove-todo" placeholder="Remove a todo">
+        <button class="remove-todo">Remove</button><br>
+
+        <input type="number" id="complete-todo" placeholder="Complete a todo">
+        <button class="complete-todo">Complete</button><br>
+
+        <button id="clear-todo">Clear</button><br>
+
+
+        <ul id="todo-list-items">
+            
+        </ul>
+    </div>
+    <script>
+
+        const todoList = new TodoList();
+
+        const newTodoInput = document.getElementById('new-todo');
+        const addTodoButton = document.querySelector('.add-todo');
+
+        const removeTodoInput = document.getElementById('remove-todo');
+        const removeTodoButton = document.querySelector('.remove-todo');
+
+        const completeTodoInput = document.getElementById('complete-todo');
+        const completeTodoButton = document.querySelector('.complete-todo');
+
+        const claerButton = document.getElementById('clear-todo');
+
+        const bottons = document.querySelectorAll('button');
+        const todoListItems = document.getElementById('todo-list-items');
+
+        // 更新列表的函数
+        function renderTodos(todos) {
+            todoListItems.innerHTML = '';
+
+            todos.forEach(todo => {
+                const li = document.createElement('li');
+                li.innerHTML = todo;
+                li.className = 'todo-item';
+                
+                todoListItems.appendChild(li);
+                
+                if (todo.completed) {
+                    li.style.textDecoration = 'line-through';
+                }
+            })
+        }
+
+        //  点击按钮时调用
+        bottons.forEach(button => {
+            button.addEventListener('click', () => {
+                
+                if (button === addTodoButton) {
+                    todoList.addTodo(newTodoInput.value);
+                    renderTodos(todoList.getTodos());
+                } else if (button === removeTodoButton) {
+                    todoList.removeTodo(removeTodoInput.value);
+                    renderTodos(todoList.getTodos());
+                } else if (button === completeTodoButton) {
+                    todoList.completeTodo(completeTodoInput.value);
+                    renderTodos(todoList.getTodos());
+                } else if (button === claerButton) {
+                    todoList.clearTodos();
+                    renderTodos(todoList.getTodos());
+                }
+            })
+        })
+    </script>
+</body>
+</html>
